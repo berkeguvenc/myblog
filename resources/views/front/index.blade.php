@@ -27,6 +27,7 @@
         }
     </style>
 
+
 </head>
 <body>
 <!-- Navbar  -->
@@ -53,7 +54,7 @@
 </header>
 <!-- Blog  -->
 <main>
-    <!-- Kategoriy  -->
+    <!-- Kategori  -->
     <section class="container">
         <br/>
         <nav>
@@ -67,6 +68,7 @@
                             data-bs-target="#{{$value['selflink']}}"
                             type="button" role="tab" aria-controls="{{$value['selflink']}}"
                             aria-selected="false">{{$value['name']}}
+                        {{$value['id']}}
                     </button>
                 @endforeach
             </div>
@@ -102,13 +104,14 @@
             </div>
         </div>
 
-        @foreach(\App\Models\category::all() as $chunk => $value)
-            <div class="tab-pane fade container" id="{{$value['selflink']}}" role="tabpanel"
-                 aria-labelledby="{{$value['selflink']}}-tab">
+        @foreach(\App\Models\category::all() as $chunk => $vas)
+            <div class="tab-pane fade container" id="{{$vas['selflink']}}" role="tabpanel"
+                 aria-labelledby="{{$vas['selflink']}}-tab">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    @foreach(\App\Models\blog::all() as $chunk => $value)
 
-                        @if($value['categoryId'] == 10)
+                    @foreach(\App\Models\blog::all() as $chunk => $value)
+                        @if($value['categoryId'] == $vas['id'])
+
                             <div class="col">
                                 <div class="card h-100">
                                     <img src="{{asset($value['image'])}}" class="card-img-top" alt="...">
@@ -130,6 +133,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         @endif
                     @endforeach
                 </div>
