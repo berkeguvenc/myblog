@@ -68,7 +68,6 @@
                             data-bs-target="#{{$value['selflink']}}"
                             type="button" role="tab" aria-controls="{{$value['selflink']}}"
                             aria-selected="false">{{$value['name']}}
-                        {{$value['id']}}
                     </button>
                 @endforeach
             </div>
